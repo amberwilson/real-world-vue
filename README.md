@@ -23,5 +23,15 @@ npm run build
 npm run lint
 ```
 
+### Runs `json-server` for API
+```
+npm run api
+```
+
+### Runs `serve` and `api`
+```
+npm run stack
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
