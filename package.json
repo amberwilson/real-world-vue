@@ -5,10 +5,14 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "api": "json-server ../real-world-vue-api/db.json --watch --port 4000",
+    "stack": "npm run serve & npm run api"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "core-js": "^3.6.5",
+    "json-server": "^0.16.1",
     "lodash": "^4.17.15",
     "node-sass": "^4.13.1",
     "sass-loader": "^8.0.2",
