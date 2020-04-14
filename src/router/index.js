@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import EventCreate from '../views/EventCreate.vue';
+import EventEdit from '../views/EventEdit.vue';
 import EventList from '../views/EventList.vue';
 import EventShow from '../views/EventShow.vue';
 
@@ -16,6 +17,12 @@ const routes = [
     path: '/event/create',
     name: 'event-create',
     component: EventCreate,
+  },
+  {
+    path: '/event/edit/:id',
+    name: 'event-edit',
+    component: EventEdit,
+    props: true,
   },
   {
     path: '/event/:id',
