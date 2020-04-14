@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "api": "json-server ../real-world-vue-api/db.json --watch --port 4000",
+    "api": "cd ../real-world-vue-api/; npm run dev -- 4000",
     "stack": "npm run serve & npm run api"
   },
   "dependencies": {
