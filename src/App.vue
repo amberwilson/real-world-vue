@@ -194,11 +194,13 @@ textarea {
 [type='text'],
 [type='number'],
 [type='search'],
-[type='password'] {
-  height: 52px;
+[type='password'],
+[type='time'],
+[type='date'] {
+  height: 2.5em;
   width: 100%;
-  padding: 0 10px;
-  font-size: 20px;
+  padding: 0 1em;
+  font-size: 1.5em;
 }
 [type='text']:focus,
 [type='number']:focus,
@@ -239,4 +241,11 @@ select:focus::ms-value {
 select::ms-expand {
   opacity: 0;
 }
+
+/* #region CUSTOM STYLES */
+button {
+  padding: 1em;
+  margin: 1em;
+}
+/* #endregion CUSTOM STYLES */
 </style>

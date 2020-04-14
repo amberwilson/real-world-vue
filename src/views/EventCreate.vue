@@ -1,9 +1,128 @@
 <template>
-  <h1>Create Event</h1>
+  <div>
+    <h1>Create Event</h1>
+    <form @submit="createEvent">
+      <div class="form-input">
+        <label for="title">Title</label>
+        <input type="text" id="title" v-model="title" ref="title" required />
+      </div>
+      <div class="form-input">
+        <label for="time">Time</label>
+        <input type="time" id="time" v-model="time" required />
+      </div>
+      <div class="form-input">
+        <label for="date">Date</label>
+        <input type="date" id="date" v-model="date" required />
+      </div>
+      <div class="form-input">
+        <label for="location">Location</label>
+        <input type="text" id="location" v-model="location" required />
+      </div>
+      <div class="form-input">
+        <label for="description">Description</label>
+        <textarea
+          id="description"
+          v-model="description"
+          required
+          cols="30"
+          rows="10"
+        ></textarea>
+      </div>
+      <div class="form-input">
+        <label for="organizer">Organizer</label>
+        <input type="text" id="organizer" v-model="organizer" required />
+      </div>
+      <div class="form-input">
+        <label for="category">Category</label>
+        <input type="text" id="category" v-model="category" required />
+      </div>
+      <div class="form-input">
+        <label for="attendees"
+          >Attendees (Hold &#8984;/Shirt or Ctrl/Shift to select
+          multiples)</label
+        >
+        <select
+          id="attendees"
+          class="attendees-select"
+          v-model="attendees"
+          multiple
+          required
+        >
+          <option v-for="person in people" :value="person.id" :key="person.id">
+            {{ person.name }}
+          </option>
+        </select>
+      </div>
+      <router-link :to="{ name: 'event-list' }">Cancel</router-link>
+      <button class="submit-button">SUBMIT</button>
+    </form>
+  </div>
 </template>
 
 <script>
-export default {};
+import EventService from '@/services/EventService.js';
+import PersonService from '@/services/PersonService.js';
+
+export default {
+  data() {
+    return {
+      people: [],
+      title: '',
+      time: '',
+      date: '',
+      location: '',
+      description: '',
+      organizer: '',
+      category: '',
+      attendees: [],
+    };
+  },
+  mounted() {
+    this.$refs.title.focus();
+  },
+  created() {
+    const vm = this;
+    PersonService.getPeople()
+      .then((res) => {
+        if (res.status === 200) {
+          vm.people = res.data;
+        }
+      })
+      .catch((err) => console.log(err));
+  },
+  methods: {
+    createEvent() {
+      const newEvent = {
+        title: this.title,
+        time: this.time,
+        date: this.date,
+        location: this.location,
+        description: this.description,
+        organizer: this.organizer,
+        category: this.category,
+        attendees: this.attendees,
+      };
+      EventService.createEvent(newEvent)
+        .then((res) => {
+          if (res.status === 201) {
+            this.$router.push({ name: 'event-list' });
+          }
+        })
+        .catch((err) => console.log(err));
+    },
+  },
+};
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.form-input {
+  padding: 1.5em 0;
+}
+.submit-button {
+  background-color: #39b982;
+  color: white;
+}
+.attendees-select {
+  height: 15em;
+}
+</style>

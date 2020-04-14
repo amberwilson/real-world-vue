@@ -13,13 +13,8 @@ const apiClient = axios.create({
 });
 
 export default {
-  getEvents() {
-    return apiClient.get('/events');
-  },
-  getEvent(id) {
-    return apiClient.get(`/events/${id}`);
-  },
-  createEvent(event) {
-    return apiClient.post('/events', event);
+  getPeople() {
+    // https://www.name-generator.org.uk/quick/
+    return apiClient.get('/people');
   },
 };
