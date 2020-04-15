@@ -56,7 +56,7 @@ export default {
   data() {
     return {
       event: null,
-      people: [],
+      people: {},
     };
   },
   created() {
@@ -79,7 +79,9 @@ export default {
   },
   methods: {
     getPersonName(id) {
-      return this.people[id].name;
+      return Object.prototype.hasOwnProperty.call(this.people, id)
+        ? this.people[id].name
+        : null;
     },
     deleteEvent() {
       if (confirm(`🗑 Are you sure you want to delete this event?`)) {
