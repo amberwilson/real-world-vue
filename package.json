@@ -10,7 +10,7 @@
     "stack": "npm run serve & npm run api"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "cuid": "^2.1.8",
     "json-server": "^0.16.1",
